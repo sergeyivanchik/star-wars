@@ -1,0 +1,22 @@
+.people {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: calc(100vh - 20px);
+    align-items: center;
+    justify-content: space-between;
+
+    & > *:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &-container {
+    height: 100%;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+  }
+}

@@ -1,50 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { getPeople } from "./people.actions";
 import { IInitialState } from "./people.types";
 
 const initialState: IInitialState = {
-  isLoading: false,
-  data: [],
+	isLoading: false,
+	data: [],
+	count: 0,
 };
 
-const userSlice = createSlice({
-  name: "user",
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(register.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(register.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.user = payload.user;
-      })
-      .addCase(register.rejected, (state) => {
-        state.isLoading = false;
-        state.user = null;
-      })
-      .addCase(login.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(login.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.user = payload.user;
-      })
-      .addCase(login.rejected, (state) => {
-        state.isLoading = false;
-        state.user = null;
-      })
-      .addCase(logout.fulfilled, (state) => {
-        state.isLoading = false;
-        state.user = null;
-      })
-      .addCase(checkAuth.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-      });
-  },
+const peopleSlice = createSlice({
+	name: "people",
+	initialState,
+	reducers: {},
+	extraReducers: (builder) => {
+		builder
+			.addCase(getPeople.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(getPeople.fulfilled, (state, { payload: { data, count } }) => {
+				state.isLoading = false;
+				state.data = data || [];
+				state.count = count || 0;
+			})
+			.addCase(getPeople.rejected, (state) => {
+				state.isLoading = false;
+				state.data = [];
+				state.count = 0;
+			});
+	},
 });
 
-const { reducer } = userSlice;
+const { reducer } = peopleSlice;
 
 export { reducer };

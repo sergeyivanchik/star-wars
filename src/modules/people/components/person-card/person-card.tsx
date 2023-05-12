@@ -11,7 +11,6 @@ const PersonCard: FC<IPersonCardProps> = ({ name, image, id }) => {
 	return (
 		<Card
 			hoverable
-			// style={{ width: 340, height: 510 }}
 			cover={<img alt={name} src={image} />}
 			onClick={() => push(`/${id}`)}
 		>

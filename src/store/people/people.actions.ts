@@ -1,23 +1,24 @@
+import { personAdapter, restApi } from "../../api";
+import { notificationError } from "../../utils";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { toastr } from "react-redux-toastr";
 
-import { restApi } from "@/api";
-import { IGetPeopleRequest, IPerson } from "@/types";
-import { toastError } from "@/utils";
+import { IGetPeople } from "./people.types";
 
-const getPeople = createAsyncThunk<IPerson[], IGetPeopleRequest>(
+const getPeople = createAsyncThunk<IGetPeople, number>(
 	"people/getList",
-	async ({ page = 1 }, thunkAPI) => {
+	async (page, thunkAPI) => {
 		try {
-			const response = await restApi.request({
+			const {
+				data: { results, count },
+			} = await restApi.request({
 				method: "GET",
-				url: `?page=${page}`,
+				url: `/people?page=${page}`,
 			});
-			toastr.success("Get people", "Completed success!");
 
-			return response.data;
+			return { data: results.map(personAdapter), count };
 		} catch (error) {
-			toastError(error);
+			notificationError(error);
+
 			return thunkAPI.rejectWithValue(error);
 		}
 	}

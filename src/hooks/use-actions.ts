@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { allActions } from "./use-actions.constants";
+import { allActions } from "../store";
 
 const useActions = () => {
 	const dispatch = useDispatch();
