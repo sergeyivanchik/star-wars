@@ -27,7 +27,7 @@ const Person: FC<IPersonProps> = ({ id }) => {
 			<div className="person-container">
 				<div className="person-name">{data.name}</div>
 				<Field title="Birth Year">{data.birth_year}</Field>
-				<Field title="Height:">{data.height}</Field>
+				<Field title="Height">{data.height}</Field>
 				<Field title="Mass">{data.mass}</Field>
 				<Field title="Gender">{data.gender}</Field>
 				<Field title="Hair Color">{data.hair_color}</Field>
