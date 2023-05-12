@@ -1,0 +1,12 @@
+.ant-card {
+  width: 340px;
+  height: 510px;
+
+  &-meta {
+    margin: -23px 0 !important;
+
+    &-title {
+      font-size: 24px !important;
+    }
+  }
+}
